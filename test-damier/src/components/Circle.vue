@@ -1,25 +1,29 @@
 <template>
-    <div id="circle"></div>
-  </template>
-  
-  <script>
-  import * as d3 from "d3";
-  
-  export default {
-    mounted() {
-      const svg = d3
-        .select("#circle")
-        .append("svg")
-        .attr("width", 100)
-        .attr("height", 100);
-  
-      svg
-        .append("circle")
-        .attr("cx", 50)
-        .attr("cy", 50)
-        .attr("r", 20)
-        .style("fill", "red");
+  <div id="circle"  ></div>
+</template>
+
+<script>
+import * as d3 from "d3";
+export default {
+  props: {
+    svg: {
+      type: Object,
+      required: true
     }
-  };
-  </script>
-  
+  },
+  mounted() {
+    this.svg
+      .append("circle")
+      .attr("cx", 220)
+      .attr("cy", 420)
+      .attr("r", 20)
+      .style("fill", "green")
+      .on("click", function() {
+        const pion = d3.select(this);
+        pion.style("fill", pion.style("fill") === "green" ? "yellow" : "green");
+      })
+  }
+};
+</script>
+
+
